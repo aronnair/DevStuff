@@ -8,12 +8,12 @@ public class Module {
     private String name;
     private String desc;
     private String moduleTag;
-    private int thumbnail;
+    private String thumbnail;
 
     public Module() {
     }
 
-    public Module(String name, String desc, String moduleTag, int thumbnail) {
+    public Module(String name, String desc, String moduleTag, String thumbnail) {
         this.name = name;
         this.desc = desc;
         this.moduleTag = moduleTag;
@@ -44,11 +44,11 @@ public class Module {
         this.desc = desc;
     }
 
-    public int getThumbnail() {
+    public String getThumbnail() {
         return thumbnail;
     }
 
-    public void setThumbnail(int thumbnail) {
+    public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
 }

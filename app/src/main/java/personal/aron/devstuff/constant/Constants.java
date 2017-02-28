@@ -11,8 +11,8 @@ import personal.aron.devstuff.dto.Module;
 
 public interface Constants {
 
-    Module moduleMaps = new Module("Maps", "Google map integrations with geofencing & more...", "", R.drawable.demo_bg);
-    Module moduleAnimations = new Module("Animations", "Animation is fun...", "", R.drawable.demo_bg);
+    Module moduleMaps = new Module("Maps", "Google map integrations with geofencing & more...", "", "http://3.bp.blogspot.com/_ZaGO7GjCqAI/Rh47v0ZvaoI/AAAAAAAABjA/20hcUi_0XVo/s640/maps-building-layer.png");
+    Module moduleAnimations = new Module("Animations", "Animation is fun...", "", "https://s3.amazonaws.com/university-prod/uploads/attachments/354/original/motion.png?1444883111");
 
     public Module[] moduleList = {moduleMaps,moduleAnimations};
 

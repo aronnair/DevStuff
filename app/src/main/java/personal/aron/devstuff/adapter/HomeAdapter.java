@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import personal.aron.devstuff.R;
@@ -52,8 +54,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         Module module = moduleList[position];
         holder.title.setText(module.getName());
         holder.count.setText(module.getDesc());
-        holder.thumbnail.setImageResource(module.getThumbnail());
-
+        //holder.thumbnail.setImageResource(module.getThumbnail());
+        Picasso.with(mContext).load(module.getThumbnail()).placeholder(R.drawable.demo_bg).into(holder.thumbnail);
     }
 
     @Override
