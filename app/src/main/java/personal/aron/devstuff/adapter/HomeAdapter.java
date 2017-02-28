@@ -1,10 +1,8 @@
 package personal.aron.devstuff.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import personal.aron.devstuff.R;
-import personal.aron.devstuff.dto.Album;
+import personal.aron.devstuff.dto.Module;
 
 /**
  * Created by a596771 on 28-02-2017.
@@ -22,7 +20,7 @@ import personal.aron.devstuff.dto.Album;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Album> albumList;
+    private Module[] moduleList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
@@ -33,14 +31,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             title = (TextView) view.findViewById(R.id.title);
             count = (TextView) view.findViewById(R.id.count);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
         }
     }
 
-
-    public HomeAdapter(Context mContext, List<Album> albumList) {
+    public HomeAdapter(Context mContext, Module[] moduleList) {
         this.mContext = mContext;
-        this.albumList = albumList;
+        this.moduleList = moduleList;
     }
 
     @Override
@@ -53,23 +49,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Album album = albumList.get(position);
-        holder.title.setText(album.getName());
-        holder.count.setText(album.getNumOfSongs() + " songs");
+        Module module = moduleList[position];
+        holder.title.setText(module.getName());
+        holder.count.setText(module.getDesc());
+        holder.thumbnail.setImageResource(module.getThumbnail());
 
-        // loading album cover using Glide library
-        //Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
-
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return albumList.size();
+        return moduleList.length;
     }
 }

@@ -30,14 +30,13 @@ import java.util.List;
 import personal.aron.devstuff.R;
 import personal.aron.devstuff.adapter.HomeAdapter;
 import personal.aron.devstuff.constant.Constants;
-import personal.aron.devstuff.dto.Album;
+import personal.aron.devstuff.dto.Module;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Constants {
 
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
-    private List<Album> albumList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,16 +76,15 @@ public class HomeActivity extends AppCompatActivity
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_home);
 
-        albumList = new ArrayList<>();
-        adapter = new HomeAdapter(this, albumList);
+        adapter = new HomeAdapter(this, moduleList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, numColumnsGridHome);
         recyclerView.setLayoutManager(mLayoutManager);
-        //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        prepareAlbums();
+        //prepareAlbums();
 
     }
 
@@ -177,56 +175,6 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    /**
-     * Adding few albums for testing
-     */
-    private void prepareAlbums() {
-        int[] covers = new int[]{
-                R.drawable.demo_bg,
-                R.drawable.demo_bg,
-                R.drawable.demo_bg,
-                R.drawable.demo_bg,
-                R.drawable.demo_bg,
-                R.drawable.demo_bg,
-                R.drawable.demo_bg,
-                R.drawable.demo_bg,
-                R.drawable.demo_bg,
-                R.drawable.demo_bg,
-                R.drawable.demo_bg};
-
-        Album a = new Album("True Romance", 13, covers[0]);
-        albumList.add(a);
-
-        a = new Album("Xscpae", 8, covers[1]);
-        albumList.add(a);
-
-        a = new Album("Maroon 5", 11, covers[2]);
-        albumList.add(a);
-
-        a = new Album("Born to Die", 12, covers[3]);
-        albumList.add(a);
-
-        a = new Album("Honeymoon", 14, covers[4]);
-        albumList.add(a);
-
-        a = new Album("I Need a Doctor", 1, covers[5]);
-        albumList.add(a);
-
-        a = new Album("Loud", 11, covers[6]);
-        albumList.add(a);
-
-        a = new Album("Legend", 14, covers[7]);
-        albumList.add(a);
-
-        a = new Album("Hello", 11, covers[8]);
-        albumList.add(a);
-
-        a = new Album("Greatest Hits", 17, covers[9]);
-        albumList.add(a);
-
-        adapter.notifyDataSetChanged();
     }
 
     /**
