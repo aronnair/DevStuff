@@ -7,7 +7,7 @@
     <color name="colorAccent">#4ac645</color>
 
     <!-- General colors -->
-    <color name="viewBg">#f1f5f8</color>
+    <color name="viewBg">#eaeaea</color>
     <color name="album_title">#4c4c4c</color>
 
     <!-- Standard colors -->

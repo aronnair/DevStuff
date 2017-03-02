@@ -14,13 +14,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +42,10 @@ public class HomeActivity extends AppCompatActivity
 
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
+    final private int RECYCLER_GRID = 1;
+    final private int RECYCLER_LIST = 2;
+    final private int RECYCLER_STAG = 3;
+    int currentLayoutType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +57,24 @@ public class HomeActivity extends AppCompatActivity
         initCollapsingToolbar();
 
         // Home screen fab button -- we wont be using it as of now.
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        //fab.setVisibility(View.GONE);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Some shitty action!!!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                if (currentLayoutType == RECYCLER_GRID) {
+                    fab.setImageResource(android.R.drawable.ic_menu_sort_by_size);
+                    fillGrid(RECYCLER_LIST);
+                    currentLayoutType = RECYCLER_LIST;
+                    Snackbar.make(view, "Layout changed to list.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    fab.setImageResource(android.R.drawable.ic_dialog_dialer);
+                    fillGrid(RECYCLER_GRID);
+                    currentLayoutType = RECYCLER_GRID;
+                    Snackbar.make(view, "Layout changed to grid.", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", null).show();
+                }
             }
         });
 
@@ -78,14 +98,38 @@ public class HomeActivity extends AppCompatActivity
 
         adapter = new HomeAdapter(this, moduleList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, numColumnsGridHome);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        currentLayoutType = RECYCLER_GRID;
+        fillGrid(currentLayoutType);
+
+        Picasso.with(this).load(homeBackDrop).placeholder(R.drawable.demo_bg).into((ImageView) findViewById(R.id.backdrop));
+    }
+
+    private void fillGrid(int recycler_grid) {
+
+        switch (recycler_grid) {
+            case RECYCLER_GRID:
+                RecyclerView.LayoutManager mGridLayoutManager = new GridLayoutManager(this, numColumnsGridHome);
+                recyclerView.setLayoutManager(mGridLayoutManager);
+               // recyclerView.addItemDecoration(new GridSpacingItemDecoration(numColumnsGridHome, dpToPx(10), true));
+                break;
+            case RECYCLER_LIST:
+                RecyclerView.LayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
+                recyclerView.setLayoutManager(mLinearLayoutManager);
+                //recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(10), true));
+                break;
+            case RECYCLER_STAG:
+                // This is effective if we use items with different sizes
+                RecyclerView.LayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(numColumnsGridHome, StaggeredGridLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(mStaggeredGridLayoutManager);
+               // recyclerView.addItemDecoration(new GridSpacingItemDecoration(numColumnsGridHome, dpToPx(10), true));
+                break;
+            default:
+                break;
+        }
+
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
-        //prepareAlbums();
-
     }
 
     /**
