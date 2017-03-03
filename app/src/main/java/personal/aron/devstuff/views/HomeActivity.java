@@ -63,17 +63,17 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 if (currentLayoutType == RECYCLER_GRID) {
-                    fab.setImageResource(android.R.drawable.ic_menu_sort_by_size);
+                    fab.setImageResource(android.R.drawable.ic_dialog_dialer);
                     fillGrid(RECYCLER_LIST);
                     currentLayoutType = RECYCLER_LIST;
                     Snackbar.make(view, "Layout changed to list.", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    fab.setImageResource(android.R.drawable.ic_dialog_dialer);
+                    fab.setImageResource(R.drawable.ic_list);
                     fillGrid(RECYCLER_GRID);
                     currentLayoutType = RECYCLER_GRID;
-                    Snackbar.make(view, "Layout changed to grid.", Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
+                    //Snackbar.make(view, "Layout changed to grid.", Snackbar.LENGTH_SHORT)
+                    //       .setAction("Action", null).show();
                 }
             }
         });
@@ -86,13 +86,6 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        // Setting todays date to the sub-header
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("EEE, d MMM yyyy");
-        String formattedDate = df.format(c.getTime());
-        TextView txtToday = (TextView) findViewById(R.id.homeDateToday);
-        txtToday.setText(formattedDate);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_home);
 

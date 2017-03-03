@@ -9,58 +9,6 @@
     tools:context="personal.aron.devstuff.views.HomeActivity"
     tools:showIn="@layout/app_bar_home">
 
-    <RelativeLayout
-        android:id="@+id/layoutHomeToday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/homeDateToday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="Test"
-            android:textSize="@dimen/text_body_1" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:src="@drawable/ic_menu_camera" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:src="@drawable/ic_menu_gallery" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:src="@drawable/ic_menu_send" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/viewHomeDivider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignBottom="@+id/layoutHomeToday"
-        android:layout_alignParentLeft="true"
-        android:alpha="0.3"
-        android:background="@color/colorPrimary" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_home"
         android:layout_width="match_parent"
