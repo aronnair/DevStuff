@@ -23,19 +23,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 import personal.aron.devstuff.R;
 import personal.aron.devstuff.adapter.HomeAdapter;
-import personal.aron.devstuff.constant.Constants;
-import personal.aron.devstuff.dto.Module;
+import personal.aron.devstuff.general.Constants;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Constants {
@@ -53,6 +46,8 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Picasso.with(this).load(homeBackDrop).placeholder(R.drawable.demo_bg).into((ImageView) findViewById(R.id.backdrop));
 
         initCollapsingToolbar();
 
@@ -88,13 +83,11 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_home);
-
         adapter = new HomeAdapter(this, moduleList);
 
         currentLayoutType = RECYCLER_GRID;
         fillGrid(currentLayoutType);
 
-        Picasso.with(this).load(homeBackDrop).placeholder(R.drawable.demo_bg).into((ImageView) findViewById(R.id.backdrop));
     }
 
     private void fillGrid(int recycler_grid) {

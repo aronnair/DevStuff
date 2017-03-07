@@ -14,6 +14,7 @@ import java.util.List;
 
 import personal.aron.devstuff.R;
 import personal.aron.devstuff.dto.Module;
+import personal.aron.devstuff.general.Utils;
 
 /**
  * Created by a596771 on 28-02-2017.
@@ -51,11 +52,26 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Module module = moduleList[position];
+        final Module module = moduleList[position];
         holder.title.setText(module.getName());
         holder.count.setText(module.getDesc());
         //holder.thumbnail.setImageResource(module.getThumbnail());
         Picasso.with(mContext).load(module.getThumbnail()).placeholder(R.drawable.demo_bg).into(holder.thumbnail);
+
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.openModuleByTag(mContext,module.getModuleTag(),null);
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.openModuleByTag(mContext,module.getModuleTag(),null);
+            }
+        });
+
     }
 
     @Override
