@@ -72,7 +72,6 @@ public class HomeActivity extends AppCompatActivity
                     //       .setAction("Action", null).show();
                 }
 
-                startActivity(new Intent(HomeActivity.this,PermissionsActivity.class));
             }
         });
 
