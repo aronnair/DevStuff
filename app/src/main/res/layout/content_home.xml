@@ -13,7 +13,6 @@
         android:id="@+id/recycler_view_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/viewHomeDivider"
         android:background="@color/viewBg"
         android:scrollbars="vertical" />
 

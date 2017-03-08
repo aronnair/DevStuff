@@ -8,5 +8,6 @@
 
     <string name="backdrop_title">ANDROID 4 LIFE</string>
     <string name="backdrop_subtitle">Fun modules for warmup!</string>
+    <string name="title_activity_permissions">App Permissions</string>
     <string name="title_activity_volley">Volley</string>
 </resources>
